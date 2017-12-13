@@ -6,19 +6,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AnswerController {
 
-
+	
     @RequestMapping("/answer")
     public Answer greeting() throws Exception {
     	Answer answer = new Answer();
     	Map<Integer, String> answerMap = new HashMap();
-    	answerMap = readPropertiesFileAsMap("./resources/answers.properties", "-");
-    	
+    	answerMap = readPropertiesFileAsMap("answers.properties");
     	Random rand = new Random(); 
     	Integer rnd = rand.nextInt(answerMap.size()); 
 
@@ -26,7 +29,7 @@ public class AnswerController {
         return answer;
     }
     
-    public static Map<Integer, String> readPropertiesFileAsMap(String filename, String delimiter)
+    public static Map<Integer, String> readPropertiesFileAsMap(String filename)
     		throws Exception
     		{
     		  Map<Integer, String> map = new HashMap();
