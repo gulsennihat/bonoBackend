@@ -41,8 +41,8 @@ public class AnswerService implements IAnswerService {
 ////
 //		lines = Files.readAllLines(Paths.get(res.getURI()), StandardCharsets.UTF_8);
 //
-		
-		InputStream inputStream = new FileInputStream(file);
+		InputStream inputStream = AnswerService.class.getResourceAsStream("/answers.properties");
+//		InputStream inputStream = new FileInputStream(file);
 		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 		BufferedReader reader = new BufferedReader(inputStreamReader);
 		String line;
