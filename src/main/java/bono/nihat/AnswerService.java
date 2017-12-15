@@ -43,7 +43,7 @@ public class AnswerService implements IAnswerService {
 //
 		InputStream inputStream = AnswerService.class.getResourceAsStream("/answers.properties");
 //		InputStream inputStream = new FileInputStream(file);
-		InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+		InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
 		BufferedReader reader = new BufferedReader(inputStreamReader);
 		String line;
 		int key = 0;
