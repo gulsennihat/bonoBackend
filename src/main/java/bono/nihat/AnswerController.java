@@ -1,11 +1,10 @@
 package bono.nihat;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,18 +13,12 @@ public class AnswerController {
 	@Autowired
 	AnswerService answerService;
 	
-	 @RequestMapping("/answer")
-	    public Answer greeting() throws Exception {
+	 @RequestMapping(value="/answer",  method = RequestMethod.POST)
+	    public @ResponseBody Answer getAnswer(@RequestBody Question question) throws Exception {
 	    	Answer answer = new Answer();
-	    	Map<Integer, String> answerMap = new HashMap();
-	    	
-	    	answerMap = answerService.ReadAnswerMap();
-	    	Random rand = new Random(); 
-	    	Integer rnd = rand.nextInt(answerMap.size()); 
-
-	    	answer.setAnswer(answerMap.get(rnd));
+	    	question.getQuestion();
+		 	answer.setAnswer(answerService.getAnswer(question));
 	        return answer;
 	    }
-	    
 	    
 }
