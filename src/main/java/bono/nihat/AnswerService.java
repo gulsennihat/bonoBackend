@@ -86,19 +86,19 @@ public class AnswerService implements IAnswerService {
 		question.trim();
 		String[] questionWords = question.trim().toLowerCase().split(" ");
 		
-		String[] tarih = {"tarih", "yil","yıl", "sene", "zaman"};
-		String[] others = {"isim", "adı", "ad", "yaş", "boy", "kilo"};
+		String[] tarih = {"tarih", "yil","yıl", "sene", "zaman", "gun" , "gün", "ay", "saat", "dakika", "nezaman", "kadar" };
+		String[] others = {"isim", "adı", "ad", "yaş", "boy", "kilo", "ismi", "soyad", "soyadı", "renk", "rengi","kilom","kilosu", "kiloyum", "kaç", "hangi", "ne"};
 		
 		for (String questionWord : questionWords) {
 			for (String tarihWord : tarih) {
-				if(questionWord.equals(tarihWord)){
+				if(questionWord.contains(tarihWord)){ //.equals(tarihWord)
 					answer="Bana tarih ve zaman sormamalısın.. Bunu cevaplayarak dünyanın dengesiyle oynayamam!";
 					return answer;
 				}
 			}
 			
 			for (String otherWord : others) {
-				if(otherWord.equals(questionWord)){
+				if(otherWord.contains(questionWord)){ //equals(questionWord)
 					answer="Bu sorunun tarzı hoşuma gitmedi. Böyle net cevaplar gerektiren sorulara cevap vererek bütün dünyanın dikkatini çekmek istemiyorum!";
 					return answer;
 				}
